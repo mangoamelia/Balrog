@@ -1,6 +1,6 @@
 .btn-orange {
   color: #ffffff;
-  background-color: #f16000;
+  background-color: #ff7314;
   display: inline-block;
   padding: 5px 35px;
   margin-bottom: 0;
@@ -15,7 +15,6 @@
   border: 0px solid transparent;
   border-radius:4px;
    -webkit-border-radius:4px;
-   -moz-border-radius:4px;
   user-select: none;
    -webkit-user-select: none;
    -moz-user-select: none;
@@ -24,5 +23,5 @@
   }
   
 .btn-orange:hover {
-  background-color: #d75600;
+  background-color: #d85600;
   }  
