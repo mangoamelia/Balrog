@@ -15,6 +15,7 @@
   border: 0px solid transparent;
   border-radius:4px;
    -webkit-border-radius:4px;
+   -moz-border-radius:4px;
   user-select: none;
    -webkit-user-select: none;
    -moz-user-select: none;
