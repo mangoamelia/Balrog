@@ -1,0 +1,65 @@
+<!-- ============================================================
+To test on a single landing page before adding to an LP template,
+copy the text below and add it as an HTML block on your landing 
+page using the WYSIWYG editor. Make sure you have configured your 
+Fullstory account to capture information on your Marketo landing 
+page subdomain (usually something like info.company.com or 
+pages.company.com)
+
+This version ONLY works when you have one form per landing page.
+============================================================= -->
+
+<!-- jQuery is required - Marketo pages do not include jQuery by default -->
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+<!-- This part listens for a form submit action and then captures the user-entered 
+data for the specified fields. It should not interfere at all with successful 
+form submit or postroll page behavior on the Marketo side.  -->
+<script>
+window.onload = function(){ 
+document.getElementsByClassName("mktoForm")[0].onsubmit = grabFormData;
+}; 
+
+function grabFormData(e) { 
+  var id = e.srcElement.getAttribute("id");
+  var email = $("#" + id).find("#Email").val();
+  var first = $("#" + id).find("#FirstName").val();
+  var last = $("#" + id).find("#LastName").val();
+  var company = $("#" + id).find("#Company").val();
+  var phone = $("#" + id).find("#Phone").val();
+  var formid = $("#" + id).find("input[name=formid]").val();
+  //console.log(first + " " + last, email, company);
+  //uncomment the line above for testing in browser console
+  FS.identify(email, {
+    "displayName": first + " " + last,
+    "email": email,
+    "company": company,
+    "phone": phone,
+    "formid": formid
+   });
+}
+</script>
+
+
+<!-- This is the standard Fullstory script. If you already have the script
+in your page template or on your landing page, leave this section out -->
+<script>
+window['_fs_debug'] = false;
+window['_fs_host'] = 'www.fullstory.com';
+window['_fs_org'] = 'ZZZ'; //replace the "ZZZ" with your unique Fullstory id.
+(function(m,n,e,t,l,o,g,y){
+  g=m[e]=function(a,b){g.q?g.q.push([a,b]):g._api(a,b);};g.q=[];
+  o=n.createElement(t);o.async=1;o.src='https://'+_fs_host+'/s/fs.js';
+  y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
+  g.identify=function(i,v){g(l,{uid:i});if(v)g(l,v)};g.setUserVars=function(v){FS(l,v)};
+  g.clearUserCookie=function(d,i){d=n.domain;while(1){n.cookie='fs_uid=;domain='+d+
+  ';path=/;expires='+new Date(0);i=d.indexOf('.');if(i<0)break;d=d.slice(i+1)}}
+})(window,document,'FS','script','user');
+</script>
+
+
+<!-- ============================================================
+You can also use this code to enable FS.identify only on select
+landing pages, if you'd rather not apply it at the template level.
+You'll still need to add your Fullstory scrip
+============================================================= -->

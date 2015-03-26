@@ -29,7 +29,9 @@ function grabFormData(e) {
 //The version below is more universal and does not use specific formId to capture information
 //You can add this to any Marketo landing page template to capture information
 
+window.onload = function(){ 
 document.getElementsByClassName("mktoForm")[0].onsubmit = grabFormData;
+};
 
 function grabFormData(e) { 
   var id = e.srcElement.getAttribute("id");
