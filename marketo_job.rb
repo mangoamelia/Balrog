@@ -31,9 +31,6 @@ class MarketoJob
         MT_account_id__c: account['id'],
         MT_user_id__c: user['id'],
         Signup_Source_Detail__c: (extra_fields['Signup_origin'] || 'unknown'),
-        API_Purpose_3s__c:  (extra_fields['API_Purpose_3s__c'] || ''),
-        API_Status_3s__c:  (extra_fields['API_Status_3s__c'] || ''),
-        API_Type_3s__c:  (extra_fields['API_Type_3s__c'] || '')
       }]
     }
   end
